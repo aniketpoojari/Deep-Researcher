@@ -1,6 +1,13 @@
 langchain
+langgraph
 langchain-core
 langchain-groq
 langchain-community
 pyyaml
 python-dotenv
+fastapi
+uvicorn
+streamlit
+pydantic
+requests
+

@@ -22,6 +22,7 @@ class Request(BaseModel):
     query: str
     history: List[Dict[str, str]] = []
     config: Optional[Config] = None
+    provider: Optional[str] = None
 
 
 @app.post("/research/stream")
@@ -36,6 +37,8 @@ async def research_stream(req: Request):
             "research.max_iterations": req.config.max_iterations,
             "research.results_per_search": req.config.results_per_search,
         }
+    if req.provider:
+        override["llm.provider"] = req.provider
 
     # Build initial state with messages
     messages = [HumanMessage(content=m["content"]) for m in req.history[-6:] if m["role"] == "user"]

@@ -19,10 +19,19 @@ class ModelLoader:
 
     def __init__(self, provider: str = None):
         self.config = ConfigLoader()
-        # Use provider from config if not specified
-        self.provider = (provider or self.config.get("llm.provider", "groq")).lower()
+        self._config_provider = self.config.get("llm.provider", "groq").lower()
+        self.provider = (provider or self._config_provider).lower()
         self._llm = None
         logger.info(f"ModelLoader initialized (provider: {self.provider})")
+
+    def _get_model_name(self, model_name: str = None) -> str:
+        """Get the model name, using provider default if config doesn't match."""
+        if model_name:
+            return model_name
+        # Only use config model_name if the config provider matches the active provider
+        if self.provider == self._config_provider:
+            return self.config.get("llm.model_name", self.DEFAULT_MODELS[self.provider])
+        return self.DEFAULT_MODELS[self.provider]
 
     def load(self, model_name: str = None, temperature: float = None):
         """
@@ -53,7 +62,7 @@ class ModelLoader:
         if not api_key:
             raise ValueError("GROQ_API_KEY not set in .env")
 
-        model = model_name or self.config.get("llm.model_name", self.DEFAULT_MODELS["groq"])
+        model = self._get_model_name(model_name)
         temp = temperature if temperature is not None else self.config.get("llm.temperature", 0.1)
 
         logger.info(f"Loading Groq model: {model}")
@@ -65,7 +74,7 @@ class ModelLoader:
         if not api_key:
             raise ValueError("OPENAI_API_KEY not set in .env")
 
-        model = model_name or self.config.get("llm.model_name", self.DEFAULT_MODELS["openai"])
+        model = self._get_model_name(model_name)
         temp = temperature if temperature is not None else self.config.get("llm.temperature", 0.1)
 
         logger.info(f"Loading OpenAI model: {model}")

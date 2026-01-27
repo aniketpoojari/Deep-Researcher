@@ -5,3 +5,5 @@ llm:
 
 research:
   results_per_search: 3
+  max_iterations: 2
+  

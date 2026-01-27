@@ -1,0 +1,7 @@
+2026-01-27 00:46:57,354 - INFO - ConfigLoader initialized
+2026-01-27 00:46:57,357 - INFO - ConfigLoader initialized
+2026-01-27 00:46:57,357 - INFO - ModelLoader initialized (provider: groq)
+2026-01-27 00:46:57,359 - INFO - Loading Groq model: meta-llama/llama-4-maverick-17b-128e-instruct
+2026-01-27 00:46:57,997 - INFO - ConfigLoader initialized
+2026-01-27 00:46:58,000 - INFO - WebSearch initialized
+2026-01-27 00:46:58,011 - INFO - WebSearchTool initialized

@@ -14,3 +14,4 @@
 - One improvement that I wanted to do on my previous project was to make the web search faster. as it was taking a lot of time to fetch multiple webpages. What I had plannd to do is use a parallel execution where each query is search parallely and lanchain does provide a functionality for parallel execution of the same node in a map reduce manner and I will try to implement this here.
 - now lets build the server which will run the streaming service. after the query is sent from the streamlit app to the server it will be processed by the agent and the progress will be streamed back to the streamlit app. This is something new that i'll do in the project.
 - good, the streaming service works. now i'll add openai model
+- now i will implient model switching inside streamlit so that the server will overrride the default config and plus add more writer prompt so that we can have different kinds of report.

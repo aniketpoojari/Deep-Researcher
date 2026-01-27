@@ -1,7 +1,7 @@
 """LLM model loader with provider abstraction."""
 
-from email.policy import default
 from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 from utils.config_loader import ConfigLoader
 from logger.logging import get_logger
 
@@ -14,6 +14,7 @@ class ModelLoader:
     # Default models for each provider
     DEFAULT_MODELS = {
         "groq": "meta-llama/llama-4-maverick-17b-128e-instruct",
+        "openai": "gpt-4o",
     }
 
     def __init__(self, provider: str = None):
@@ -23,7 +24,7 @@ class ModelLoader:
         self._llm = None
         logger.info(f"ModelLoader initialized (provider: {self.provider})")
 
-    def load(self, model_name: str = None, temperature: float = None) -> ChatGroq:
+    def load(self, model_name: str = None, temperature: float = None):
         """
         Load the LLM model.
 
@@ -39,8 +40,10 @@ class ModelLoader:
 
         if self.provider == "groq":
             self._llm = self._load_groq(model_name, temperature)
+        elif self.provider == "openai":
+            self._llm = self._load_openai(model_name, temperature)
         else:
-            raise ValueError(f"Unsupported provider: {self.provider}. Use 'groq'.")
+            raise ValueError(f"Unsupported provider: {self.provider}. Use 'groq' or 'openai'.")
 
         return self._llm
 
@@ -55,3 +58,15 @@ class ModelLoader:
 
         logger.info(f"Loading Groq model: {model}")
         return ChatGroq(groq_api_key=api_key, model_name=model, temperature=temp)
+
+    def _load_openai(self, model_name: str = None, temperature: float = None) -> ChatOpenAI:
+        """Load OpenAI model."""
+        api_key = self.config.get_env("OPENAI_API_KEY", default=None)
+        if not api_key:
+            raise ValueError("OPENAI_API_KEY not set in .env")
+
+        model = model_name or self.config.get("llm.model_name", self.DEFAULT_MODELS["openai"])
+        temp = temperature if temperature is not None else self.config.get("llm.temperature", 0.1)
+
+        logger.info(f"Loading OpenAI model: {model}")
+        return ChatOpenAI(api_key=api_key, model=model, temperature=temp)

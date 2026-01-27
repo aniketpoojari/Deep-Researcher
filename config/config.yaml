@@ -1,6 +1,6 @@
 llm:
-  provider: "groq"
-  model_name: "meta-llama/llama-4-maverick-17b-128e-instruct"
+  provider: "openai" # "groq"
+  model_name: "gpt-4o" #"meta-llama/llama-4-maverick-17b-128e-instruct"
   temperature: 0.1
 
 research:

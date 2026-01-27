@@ -2,6 +2,7 @@ langchain
 langgraph
 langchain-core
 langchain-groq
+langchain-openai
 langchain-community
 pyyaml
 python-dotenv

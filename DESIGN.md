@@ -78,6 +78,10 @@ I built the server which will run the streaming service. After the query is sent
 - Added more writer prompts so that we can have different kinds of report (Detailed, Concise, Academic, Bullet Points).
 - Added functionality to change reporting style — just a simple prompt change in the writer code does the work.
 
+## Challenges
+
+One issue I ran into was with the critique node. The LLM was returning the string `"True"` instead of an actual boolean value, which broke the conditional edge because my check was comparing against a boolean. I had to add explicit bool conversion in the critique node to handle this. Small thing but it took me a while to figure out why the loop wasnt working properly.
+
 ## Known Shortcomings & Future Work
 
 I wish I had more time to add more functionality but I am stopping here at 5 hours. Things I would add with more time:
@@ -85,6 +89,7 @@ I wish I had more time to add more functionality but I am stopping here at 5 hou
 - **Human-in-the-loop** — so that a human can review the plan before research is executed, just like Google Gemini deep research mode.
 - **RAG capability** — so that the agent can use files provided by the user for research as well.
 - **Conversation memory** — a memory tool so that long conversation history can be retained and fetched back whenever a query needs it, just like RAG but for conversation memory.
+- **More thorough testing** — I would have liked to add unit tests for the individual components like the config loader, model loader and web search util but I ran out of time. The LangSmith evals cover the end to end flow but dont test the individual pieces.
 
 ## Evaluations
 

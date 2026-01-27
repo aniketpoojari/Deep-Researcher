@@ -45,7 +45,6 @@ class WebSearch:
 
         n = num_results or self.max_results
 
-        # Try Tavily first
         if self._tavily:
             results = self._search_tavily(query, n)
             if results:

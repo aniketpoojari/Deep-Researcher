@@ -4,3 +4,4 @@
 - I will first structured the project as an installable Python package. This enables me to do absolute imports to prevent "ModuleNotFound" errors and it will also allow me to install all the necessary packages in the requirements.txt file.
 - I will now add logging to the code so that I can keep track of what is happening in the code.
 - now i will create the necessary folders for my assistant. agent folder house the main agent code. tools folder to define the tools. utils folder which will contain the actual logic for the tools and some other helper codes. prompt library folder to house the prompts file which will store all the prompts needed for llm calls. models folder to store the pydantic models. config folder will store all the config needed during execution of the agent and finally the evals folder to have the langsmith evaluations.
+- i'll make the config loader now as it will be used every where in the code. 

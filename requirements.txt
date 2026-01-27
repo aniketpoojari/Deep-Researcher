@@ -11,4 +11,5 @@ uvicorn
 streamlit
 pydantic
 requests
+langsmith
 

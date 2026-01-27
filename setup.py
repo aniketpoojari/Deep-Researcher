@@ -19,5 +19,5 @@ setup(
     version="1.0.0",
     author="Aniket Poojari",
     packages=find_packages(),
-    install_requirements=get_requirements()
+    install_requires=get_requirements()
 )

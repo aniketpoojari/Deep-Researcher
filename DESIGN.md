@@ -15,3 +15,4 @@
 - now lets build the server which will run the streaming service. after the query is sent from the streamlit app to the server it will be processed by the agent and the progress will be streamed back to the streamlit app. This is something new that i'll do in the project.
 - good, the streaming service works. now i'll add openai model
 - now i will implient model switching inside streamlit so that the server will overrride the default config and plus add more writer prompt so that we can have different kinds of report.
+- added functionality to change reporting style. just a simple prompt change in the writer code does the work.

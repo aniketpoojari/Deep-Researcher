@@ -14,6 +14,7 @@ if "messages" not in st.session_state:
 with st.sidebar:
     st.header("Settings")
     provider = st.selectbox("LLM Provider", ["openai", "groq"], index=0)
+    report_style = st.selectbox("Report Style", ["Detailed", "Concise", "Academic", "Bullet Points"], index=0)
     config = {
         "num_searches": st.slider("Searches", 1, 5, 3),
         "max_iterations": st.slider("Max iterations", 1, 3, 2),
@@ -41,7 +42,7 @@ if query := st.chat_input("What would you like to research?"):
         try:
             with requests.post(
                 "http://localhost:8000/research/stream",
-                json={"query": query, "history": st.session_state.messages[:-1], "config": config, "provider": provider},
+                json={"query": query, "history": st.session_state.messages[:-1], "config": config, "provider": provider, "report_style": report_style.lower().replace(" ", "_")},
                 stream=True, timeout=180
             ) as r:
                 r.raise_for_status()

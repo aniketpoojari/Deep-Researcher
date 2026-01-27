@@ -6,7 +6,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
 
 from models.pydantic_models import ResearchState, ResearchPlan, CritiqueResponse, SearchResultItem, SearchQuery
-from prompt_library.prompt import PLANNER_PROMPT, CRITIQUE_PROMPT, WRITER_PROMPT
+from prompt_library.prompt import PLANNER_PROMPT, CRITIQUE_PROMPT, WRITER_PROMPTS
 from utils.model_loader import ModelLoader
 from utils.config_loader import ConfigLoader
 from tools.web_search_tool import WebSearchTool
@@ -124,7 +124,9 @@ class DeepResearchWorkflow:
             return {"final_report": "No data found.", "messages": [AIMessage(content="No data found.")]}
 
         context = "\n".join(f"[{i.source_id}] {i.title}\nURL: {i.url}\n{i.content}\n" for i in info)
-        prompt = WRITER_PROMPT.format(query=state["original_query"], context=context)
+        style = self._cfg("report.style", "detailed")
+        writer_template = WRITER_PROMPTS.get(style, WRITER_PROMPTS["detailed"])
+        prompt = writer_template.format(query=state["original_query"], context=context)
 
         try:
             r = self.llm.invoke([HumanMessage(content=prompt)])

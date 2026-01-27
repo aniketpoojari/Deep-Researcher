@@ -23,6 +23,7 @@ class Request(BaseModel):
     history: List[Dict[str, str]] = []
     config: Optional[Config] = None
     provider: Optional[str] = None
+    report_style: Optional[str] = None
 
 
 @app.post("/research/stream")
@@ -39,6 +40,8 @@ async def research_stream(req: Request):
         }
     if req.provider:
         override["llm.provider"] = req.provider
+    if req.report_style:
+        override["report.style"] = req.report_style
 
     # Build initial state with messages
     messages = [HumanMessage(content=m["content"]) for m in req.history[-6:] if m["role"] == "user"]

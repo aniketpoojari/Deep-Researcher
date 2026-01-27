@@ -22,7 +22,7 @@ User Query → Planner → Researcher (parallel) → Critique → Writer → Rep
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/your-username/Deep-Researcher.git
+git clone https://github.com/aniketpoojari/Deep-Researcher.git
 cd Deep-Researcher
 pip install -r requirements.txt
 ```
@@ -50,7 +50,7 @@ Start the FastAPI backend and Streamlit frontend in two separate terminals:
 
 ```bash
 # Terminal 1 — API server
-python main.py
+uvicorn main:app --reload --port 8000
 
 # Terminal 2 — UI
 streamlit run app.py

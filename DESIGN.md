@@ -7,3 +7,4 @@
 - i'll make the config loader now as it will be used every where in the code. 
 - i'll now added the model loader file that will help me load the model for any node of the agent.
 - i have adeed the Groq model which will allow me to first test the model on free limits by groq service i'll later add the openai model 
+- now lets make the web search util. the file that will actually search the internet and return the agent webpages.

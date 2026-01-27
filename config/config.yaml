@@ -2,3 +2,6 @@ llm:
   provider: "groq"
   model_name: "meta-llama/llama-4-maverick-17b-128e-instruct"
   temperature: 0.1
+
+research:
+  results_per_search: 3

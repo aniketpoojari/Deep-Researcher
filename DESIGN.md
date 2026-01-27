@@ -5,3 +5,5 @@
 - I will now add logging to the code so that I can keep track of what is happening in the code.
 - now i will create the necessary folders for my assistant. agent folder house the main agent code. tools folder to define the tools. utils folder which will contain the actual logic for the tools and some other helper codes. prompt library folder to house the prompts file which will store all the prompts needed for llm calls. models folder to store the pydantic models. config folder will store all the config needed during execution of the agent and finally the evals folder to have the langsmith evaluations.
 - i'll make the config loader now as it will be used every where in the code. 
+- i'll now added the model loader file that will help me load the model for any node of the agent.
+- i have adeed the Groq model which will allow me to first test the model on free limits by groq service i'll later add the openai model 

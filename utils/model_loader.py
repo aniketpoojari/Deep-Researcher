@@ -14,7 +14,7 @@ class ModelLoader:
     # Default models for each provider
     DEFAULT_MODELS = {
         "groq": "meta-llama/llama-4-maverick-17b-128e-instruct",
-        "openai": "gpt-4o",
+        "openai": "gpt-5.2",
     }
 
     def __init__(self, provider: str = None):

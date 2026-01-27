@@ -16,3 +16,5 @@
 - good, the streaming service works. now i'll add openai model
 - now i will implient model switching inside streamlit so that the server will overrride the default config and plus add more writer prompt so that we can have different kinds of report.
 - added functionality to change reporting style. just a simple prompt change in the writer code does the work.
+- wish I had more time to add more functionality but i am stopping her at 5 hours. I wish i had added fuunctionality like a human in the loop so that a human can review the plan before research is executed just like google gemini deep research mode. In the future I wish to add RAG capability to this agent so that it can use the files provided by the user for reearch as well. Also, a memory tool could be added so that long conversation history can be retained and fetched back whenever a quiery needs it, just like RAG but for conversation memory.
+- I'll now add some lanchsmith tests to make sure that the agent is working as expected.

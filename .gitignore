@@ -7,3 +7,13 @@ build/
 *.log
 */*.log
 .vscode/
+
+.claude/
+
+mlruns/
+
+*.pth
+
+*.pt
+
+*.cb
